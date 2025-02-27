@@ -24,6 +24,7 @@
 - Inside the Dev Container, open a terminal and run:
 
 ```bash
+    poetry config virtualenvs.in-project true # configures poetry to create virtual environment in the projects root
     poetry new backend-i
     cd backend-i
 ```

@@ -13,6 +13,3 @@ services:
     build: 
       dockerfile: dockerfile
       context: .
-    command: poetry run bot
-    volumes:
-      - .:/workspace

@@ -3,9 +3,12 @@ import logging
 import sys
 from datetime import datetime
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - [%(levelname)s] - %(filename)s@%(lineno)d - %(funcName)s - %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler(sys.stdout))
 
 def audit(func):
     def wrapper():

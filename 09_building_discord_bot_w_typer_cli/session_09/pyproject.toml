@@ -1,0 +1,25 @@
+[project]
+name = "session-09"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "nuno2msilva",email = "166436702+nuno2msilva@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv (>=1.0.1,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "session_09", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+typer = "^0.15.2"
+discord = "^2.3.2"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

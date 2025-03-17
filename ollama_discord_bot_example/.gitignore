@@ -171,6 +171,3 @@ cython_debug/
 .pypirc
 
 .solutions.md
-
-# Ollama Folder for Docker
-.ollama/

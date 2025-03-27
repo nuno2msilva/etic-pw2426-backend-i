@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+    <title>
+        {% block title %}
+        DOCUMENT
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <nav class="menu">
+        {% block menu %}
+        MENU
+        {% endblock %}
+    </nav>
+    <div class="content">
+        <br>
+        {% block content %}
+        CONTENT
+        {% endblock %}
+    </div>
+</body>
+
+</html>

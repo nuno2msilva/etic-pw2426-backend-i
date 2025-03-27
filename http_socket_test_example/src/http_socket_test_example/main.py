@@ -36,4 +36,4 @@ def server():
                 client_connection.sendall(http_response.encode('utf-8'))
 
 if __name__ == "__main__":
-    server()
+    server()        

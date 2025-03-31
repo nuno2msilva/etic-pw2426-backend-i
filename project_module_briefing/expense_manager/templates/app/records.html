@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block menu %}
+{% if request.user.is_authenticated %}
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div style="text-align: center; display: flex; align-items: center; justify-content: center;">
+    <h1 style="margin-right: 10px;">{{ request.user.username }}'s Records</h1>
+    <a href="{% url 'purge_records' %}" title="Delete ALL Records" style="font-size: 24px; text-decoration: none; color: red;">❌</a>
+</div>
+
+<!-- Simplified sorting options -->
+<div style="text-align: center; margin-bottom: 20px;">
+    <span style="font-weight: bold; margin-right: 10px;">Sort by:</span>
+    
+    <span style="margin: 0 10px;">
+        Entry <a href="?sort=id">🔼</a> 
+        <a href="?sort=-id">🔽</a>
+    </span>
+    
+    <span style="margin: 0 10px;">
+        Date <a href="?sort=date">🔼</a> 
+        <a href="?sort=-date">🔽</a>
+    </span>
+    
+    <span style="margin: 0 10px;">
+        Item <a href="?sort=item">🔼</a> 
+        <a href="?sort=-item">🔽</a>
+    </span>
+    
+    <span style="margin: 0 10px;">
+        Category <a href="?sort=category__name">🔼</a> 
+        <a href="?sort=-category__name" >🔽</a>
+    </span>
+    
+    <span style="margin: 0 10px;">
+        Cost <a href="?sort=cost">🔼</a> 
+        <a href="?sort=-cost">🔽</a>
+    </span>
+</div>
+
+<div style="display: flex;">
+    <div style="width: 50%; padding-right: 20px; text-align: center;">
+        <h2>Add New Record</h2>
+        <form method="post" style="display: inline-block; text-align: left;">
+            {% csrf_token %}
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px;">
+                <label style="text-align: right;">Type:</label>
+                <div class="form-group" style="text-align: left; display: flex; justify-content: center; align-items: center;">
+                    {{ form.type.errors }}
+                    {% for radio in form.type %}
+                    <label for="{{ radio.id_for_label }}" style="display: inline-block; margin-right: 10px;">
+                        {{ radio.tag }} {{ radio.choice_label }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {{ form.date.errors }}
+                <label for="{{ form.date.id_for_label }}" style="text-align: right;">Date:</label> {{ form.date }}
+                {{ form.item.errors }}
+                <label for="{{ form.item.id_for_label }}" style="text-align: right;">Item:</label> <input type="text" name="{{ form.item.html_name }}" id="{{ form.item.id_for_label }}" maxlength="20">
+                {{ form.volume.errors }}
+                <label for="{{ form.volume.id_for_label }}" style="text-align: right;">Volume:</label> <input type="text" name="{{ form.volume.html_name }}" id="{{ form.volume.id_for_label }}" maxlength="20">
+                {{ form.cost.errors }}
+                <label for="{{ form.cost.id_for_label }}" style="text-align: right;">Cost:</label> <input type="text" name="{{ form.cost.html_name }}" id="{{ form.cost.id_for_label }}" maxlength="20">
+                {{ form.category.errors }}
+                <label for="{{ form.category.id_for_label }}" style="text-align: right;">Category:</label>
+                <div>
+                    {{ form.category }}
+                    or
+                    {{ form.new_category }}
+                </div>
+            </div>
+            <p style="text-align: center;"><button type="submit">Submit Record</button></p>
+        </form>
+    </div>
+    <div style="width: 50%; text-align: center;">
+        <h2>Summary</h2>
+        <p>Your Wallet: {{ total_amount|stringformat:".2f" }} €</p>
+        <h3>Spending by Category:</h3>
+        {% if category_spending %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for category, amount in category_spending.items %}
+            <li>{{ category }}: {{ amount|stringformat:".2f" }} €</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no categories in Ba Sing Se!</p>
+        {% endif %}
+    </div>
+</div>
+
+<h2 style="text-align: center;">Existing Records</h2>
+{% if object_list %}
+<table style="border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid black; text-align: center; width: 12%;">Type</th>
+            <th style="border: 1px solid black; text-align: center; width: 12%;">Date</th>
+            <th style="border: 1px solid black; text-align: center; width: 20%;">Item</th>
+            <th style="border: 1px solid black; text-align: center; width: 16%;">Category</th>
+            <th style="border: 1px solid black; text-align: center; width: 8%;">Volume</th>
+            <th style="border: 1px solid black; text-align: center; width: 12%;">Cost</th>
+            <th style="border: 1px solid black; text-align: center; width: 8%;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in object_list %}
+        <tr>
+            <td style="border: 1px solid black; text-align: center;">{{ record.type }}</td>
+            <td style="border: 1px solid black; text-align: center;">{{ record.date }}</td>
+            <td style="border: 1px solid black; text-align: center;">{{ record.item }}</td>
+            <td style="border: 1px solid black; text-align: center;">{{ record.category }}</td>
+            <td style="border: 1px solid black; text-align: center;">{{ record.volume }}</td>
+            <td style="border: 1px solid black; text-align: center;">{{ record.cost }} €</td>
+            <td style="border: 1px solid black; text-align: center;">
+                <a href="{% url 'edit_record' record.id %}">✏️</a>
+                <a href="{% url 'delete_record' record.id %}">❌</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p style="text-align: center;">Nobody here but us chickens!</p>
+{% endif %}
+{% endblock %}

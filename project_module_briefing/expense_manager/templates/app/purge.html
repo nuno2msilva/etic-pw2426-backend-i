@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<h1>Purge Mode - All Records</h1>
+{% endblock %}
+
+{% block content %}
+<h1>Purge All Records?</h1>
+<p style="font-weight: bold; color: red;">Warning: You are about to delete ALL {{ record_count }} records!</p>
+<p>This action cannot be undone.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm Purge</button>
+    <a href="{% url 'records' %}">Cancel</a>
+</form>
+{% endblock %}

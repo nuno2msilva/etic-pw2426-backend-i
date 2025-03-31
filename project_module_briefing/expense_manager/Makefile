@@ -25,9 +25,11 @@ setup:
 		echo "Please edit the .env file with your settings"; \
 	fi
 	poetry install
+	docker compose run --rm web poetry run python manage.py makemigrations
 	poetry run python manage.py migrate
 	docker compose build
 	make migrate
+	make static
 	@echo "Setup complete! Run 'make run' to start the application."
 
 # === Database Commands ===

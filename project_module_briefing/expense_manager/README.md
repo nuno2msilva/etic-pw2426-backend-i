@@ -17,7 +17,6 @@
 
 ### Dev Requirements
 
-- Python 3.8+
 - Poetry (dependency management)
 - Docker and Docker Compose (optional)
 
@@ -41,6 +40,13 @@ The project includes a Makefile with convenient commands that simplify common de
    
    This will:
    - Create a sample .env file (you should edit this with your settings)
+      ```
+      POSTGRES_USERNAME="postgres"
+      POSTGRES_PASSWORD="qwerty"
+      POSTGRES_HOST="database"
+      POSTGRES_PORT="5432"
+      POSTGRES_DATABASE="dj_db"
+      ```
    - Install dependencies with Poetry
    - Build Docker containers
    - Run initial migrations

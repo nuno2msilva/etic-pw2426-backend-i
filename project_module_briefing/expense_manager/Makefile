@@ -31,14 +31,14 @@ plugandplay:
 	make migrate
 	make static
 	@echo "Starting application and opening browser..."
-    @{ docker compose up & } 2>/dev/null
-    @sleep 5
-    @echo "Opening browser to http://localhost:8000"
-    @{ which xdg-open > /dev/null && xdg-open http://localhost:8000; } || \
-    { which open > /dev/null && open http://localhost:8000; } || \
-    { which explorer > /dev/null && explorer "http://localhost:8000"; } || \
-    { which python3 > /dev/null && python3 -m webbrowser http://localhost:8000; } || \
-    echo "Could not open browser automatically. Please visit http://localhost:8000 in your browser."
+	@{ docker compose up & } 2>/dev/null
+	@sleep 5
+	@echo "Opening browser to http://localhost:8000"
+	@{ which xdg-open > /dev/null && xdg-open http://localhost:8000; } || \
+	{ which open > /dev/null && open http://localhost:8000; } || \
+	{ which explorer > /dev/null && explorer "http://localhost:8000"; } || \
+	{ which python3 > /dev/null && python3 -m webbrowser http://localhost:8000; } || \
+	echo "Could not open browser automatically. Please visit http://localhost:8000 in your browser."
 
 
 # === Database Commands ===

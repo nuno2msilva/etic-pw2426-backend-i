@@ -31,7 +31,7 @@ The project includes a Makefile with convenient commands that simplify common de
 1. Clone the repository:
       ```
    git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
-   cd etic-pw2426-backend-i/project_module_briefing/expense_tracker/
+   cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
     ```
 
 2. Run the setup command:
@@ -87,7 +87,7 @@ The project includes a Makefile with convenient commands that simplify common de
 1. Clone the repository:
       ```
    git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
-   cd etic-pw2426-backend-i/project_module_briefing/expense_tracker/
+   cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
     ```
 
 2. Install dependencies:

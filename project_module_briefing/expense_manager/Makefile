@@ -29,7 +29,6 @@ plugandplay:
 	poetry run python manage.py migrate
 	docker compose build
 	make migrate
-	make static
 	@echo "Starting application and opening browser..."
 	@{ docker compose up & } 2>/dev/null
 	@sleep 5

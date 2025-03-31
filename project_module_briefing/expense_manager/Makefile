@@ -14,13 +14,18 @@ init:
 setup:
 	@echo "Setting up Expense Manager..."
 	@if [ ! -f .env ]; then \
-    	echo "Creating example .env file..."; \
-    	echo "DEBUG=True" > .env; \
-    	echo "SECRET_KEY=your-secret-key-here" >> .env; \
-    	echo "DATABASE_URL=postgres://postgres:postgres@db:5432/expense_manager" >> .env; \
-	echo "Please edit the .env file with your settings"; \
+		echo "Creating example .env file..."; \
+		echo "DEBUG=True" > .env; \
+		echo "SECRET_KEY=your-secret-key-here" >> .env; \
+		echo "POSTGRES_USERNAME=postgres" >> .env; \
+		echo "POSTGRES_PASSWORD=qwerty" >> .env; \
+		echo "POSTGRES_HOST=database" >> .env; \
+		echo "POSTGRES_PORT=5432" >> .env; \
+		echo "POSTGRES_DATABASE=dj_db" >> .env; \
+		echo "Please edit the .env file with your settings"; \
 	fi
 	poetry install
+	poetry run python manage.py migrate
 	docker compose build
 	make migrate
 	@echo "Setup complete! Run 'make run' to start the application."

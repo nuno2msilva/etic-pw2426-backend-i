@@ -11,7 +11,7 @@ init:
 	@echo "Dependencies installed. Create a .env file before continuing."
 
 # Quick Start First Time Setup
-setup:
+plugandplay:
 	@echo "Setting up Expense Manager..."
 	@if [ ! -f .env ]; then \
 		echo "Creating example .env file..."; \

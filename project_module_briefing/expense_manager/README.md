@@ -4,124 +4,70 @@
 
 ### Features
 
-- Track your expenses and income with detailed information;
-- Categorize transactions for better organization;
-- View spending summaries by category;
-- Sort and filter transaction history;
-- Multi-user support.
+- Track your expenses and income with detailed information
+- Categorize transactions for better organization
+- View spending summaries by category
+- Sort and filter transaction history
+- Multi-user support
 
-### Requirements
+## Setup Options
 
+### Option 1: VS Code + Docker (Recommended)
+
+This is the recommended approach as it provides a consistent development environment.
+
+#### Requirements:
+- Visual Studio Code
+- Docker and Docker Compose
+- VS Code Extensions:
+  - Docker
+  - Remote - Containers
+
+#### Setup Steps:
+
+1. Clone the repository:
+```
+git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
+cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
+```
+
+2. Open the project in VS Code:
+```
+code .
+```
+
+3. Reopen the project in a container:
+   - Click on the green button in the bottom-left corner of VS Code
+   - Select "Reopen in Container"
+
+4. Run the engine command:
+```
+make plugandplay
+```
+
+5. If it doesn't open a page automatically, visit localhost:8000 in your browser.
+
+
+### Option 2: Manual Setup (without Docker)
+
+#### Requirements:
 - Python 3.8+
 - Poetry (dependency management)
 
-### Dev Requirements
-
-- Poetry (dependency management)
-- Docker and Docker Compose (optional)
-
-
-## Quick Start with Makefile Commands
-
-The project includes a Makefile with convenient commands that simplify common development tasks.
-
-### Setting Up:
+#### Setup Steps:
 
 1. Clone the repository:
-      ```
-   git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
-   cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
-    ```
+```
+git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
+cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
+```
 
-2. Run the setup command:
-   ```
-   make setup
-   ```
-   
-   This will:
-   - Create a sample .env file (you should edit this with your settings)
-      ```
-      POSTGRES_USERNAME="postgres"
-      POSTGRES_PASSWORD="qwerty"
-      POSTGRES_HOST="database"
-      POSTGRES_PORT="5432"
-      POSTGRES_DATABASE="dj_db"
-      ```
-   - Install dependencies with Poetry
-   - Build Docker containers
-   - Run initial migrations
+2. Run the automated engine:
+```
+make plugandplay
+```
 
-3. Start the application:
-   ```
-   make run
-   ```
-
-4. Create a superuser (optional):
-   ```
-   make superuser
-   ```
-
-5. Visit http://localhost:8000 in your browser
-
-## Running Tests (For Devs):
-
-- Install Dev Dependencies:
-    ```
-    made devsetup
-    ```
-
-
-- Run all tests:
-  ```
-  make test
-  ```
-
-## Common Makefile Commands:
-
-- **make run**            : Start the application
-- **make stop**           : Stop the application 
-- **make run-detached**   : Run in background mode
-- **make migrations**     : Create new migrations
-- **make migrate**        : Apply database migrations
-- **make resetdb**        : Reset the database (dev only)
-- **make superuser**      : Create a superuser account
-- **make shell**          : Open a Django shell
-- **make help**           : Show all available commands
-
-## Manual Setup (without Docker):
-
-1. Clone the repository:
-      ```
-   git clone https://github.com/nuno2msilva/etic-pw2426-backend-i/
-   cd etic-pw2426-backend-i/project_module_briefing/expense_manager/
-    ```
-
-2. Install dependencies:
-   ```
-   pip install poetry
-   poetry install
-   ```
-
-3. Create a .env file in the project root (Reccomended to edit to your preference):
-   ```
-   POSTGRES_USERNAME="postgres"
-   POSTGRES_PASSWORD="qwerty"
-   POSTGRES_HOST="database"
-   POSTGRES_PORT="5432"
-   POSTGRES_DATABASE="dj_db"
-    ```
-
-4. Apply migrations:
-   ```
-   poetry run python manage.py migrate
-   ```
-
-5. Run the development server:
-   ```
-   poetry run python manage.py runserver
-   ```
-
-6. Visit http://localhost:8000 in your browser
+3. If it doesn't open a page automatically, visit localhost:8000 in your browser.
 
 ## Using the Application
 
